@@ -3,12 +3,50 @@
 
 // automatically reads .env file 
 
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DB_URL")
 }
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  cart      Cart?
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  image       String
+  description String
+  brand       String
+  category    String
+  price       Float
+  cartItem    CartItem?
+}
+
+model Cart {
+  id        Int        @id @default(autoincrement())
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String     @unique
+  cartItems CartItem[]
+  totalCost Float      @default(0)
+}
+
+model CartItem {
+  id        Int     @id @default(autoincrement())
+  cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId    Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int     @unique
+}
+
+// add Order model 
+// add OrderItem model 
