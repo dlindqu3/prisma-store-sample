@@ -29,7 +29,7 @@ model Product {
   brand       String
   category    String
   price       Float
-  cartItem    CartItem?
+  cartItems    CartItem[]
 }
 
 model Cart {
@@ -45,7 +45,8 @@ model CartItem {
   cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
   cartId    Int
   product   Product @relation(fields: [productId], references: [id])
-  productId Int     @unique
+  productId Int   
+  quantity  Int 
 }
 
 // add Order model 

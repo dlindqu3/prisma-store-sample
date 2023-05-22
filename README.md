@@ -8,7 +8,8 @@
     - generates .env 
 - npx prisma db push
     - set up initial versions of your schema (can alter later)
-    - temporary, doesn't generate migrations 
+    - temporary, doesn't generate migrations
+    - can also be used to update schema  
 - npx prisma studio
     - gives us a GUI to look at models
 - npx prisma generate

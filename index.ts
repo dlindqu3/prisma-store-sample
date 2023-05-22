@@ -3,6 +3,7 @@ import prisma from "./prisma";
 import userRoutes from "./routes/users";
 import cartRoutes from "./routes/carts"; 
 import productRoutes from "./routes/products";
+import cartItemRoutes from "./routes/cartItems";
 import bodyParser from "body-parser";
 
 
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 app.use('/api/users', userRoutes)
 app.use('/api/carts', cartRoutes)
 app.use('/api/products', productRoutes)
+app.use('/api/cart-items', cartItemRoutes)
 
 app.listen(3500, () => {
     console.log("listening on port 3500")
