@@ -1,15 +1,22 @@
 import { RequestHandler } from 'express'; 
-require('dotenv').config();
+import prisma from "../prisma";
+import dotenv  from "dotenv"
 import axios from 'axios'; 
 
+
 export const createUser:RequestHandler = async (req, res, next) => {
-  let newObj = {
-      username: req.body.username,
-      email: req.body.email, 
-      password: req.body.password
-    }   
+
+  // let bodyType = typeof(req.body);
   
-    res.status(200).json({ "test": "createUser" });
+  let newUser = await prisma.user.create({
+    data: {
+      "username": req.body.username,
+      "email": req.body.email,
+      "password": req.body.password
+    }
+  })
+
+  res.status(200).json({ "newUser": newUser });
 }
 
 export const getUsers: RequestHandler = async (req, res, next) => {

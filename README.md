@@ -7,8 +7,8 @@
     - temporary, doesn't generate migrations 
 - npx prisma studio
     - gives us a GUI to look at models
-
-
+- npx prisma generate
+    - generates client 
 ## notes 
 - prisma is an ORM, tells db what schema should look like 
 - schema.prisma
@@ -27,12 +27,12 @@
 
 
 ## questions 
-1. how to start server locally? 
-2. package.json scripts? 
-3. ts.config file? 
+
 
 
 ## citations 
 1. Rettson, "Create A Node JS API Using Prisma, Express and TypeScript" [link](https://www.youtube.com/watch?v=AhP9I8_l-H0)
 2. Prisma, "How to Use Cascading Deletes" [link](https://www.youtube.com/watch?v=-Nv3wSm0Ac0)
 3. Stack Overflow, "Typescript ReferenceError: exports is not defined" [link](https://stackoverflow.com/questions/43042889/typescript-referenceerror-exports-is-not-defined)
+4. Stack Overflow, "Instantiate prisma only once" [link](https://stackoverflow.com/questions/66919878/instantiate-prisma-only-once)
+5. Borislav Hadzhiev, "req.body is undefined in Express.js & Node issue [Solved]"[link](https://bobbyhadz.com/blog/express-js-req-body-is-undefined)
