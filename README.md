@@ -1,3 +1,7 @@
+## run server (dev)
+- npm run dev
+
+
 ## prisma terminal commands 
 - npx prisma init
     - generates prisma folder with schema.prisma
@@ -9,6 +13,8 @@
     - gives us a GUI to look at models
 - npx prisma generate
     - generates client 
+
+    
 ## notes 
 - prisma is an ORM, tells db what schema should look like 
 - schema.prisma
@@ -27,7 +33,9 @@
 
 
 ## questions 
-
+1. How to do migrations 
+    - shadow migrations don't work, apparently because of permissions with elephantsql
+    - "npx prisma migrate deploy" doesn't work, because "The database schema is not empty."
 
 
 ## citations 

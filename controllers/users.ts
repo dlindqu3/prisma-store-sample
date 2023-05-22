@@ -1,30 +1,79 @@
 import { RequestHandler } from 'express'; 
 import prisma from "../prisma";
 import dotenv  from "dotenv"
-import axios from 'axios'; 
 
 
 export const createUser:RequestHandler = async (req, res, next) => {
 
-  // let bodyType = typeof(req.body);
+  try {
+    let newUser = await prisma.user.create({
+      data: {
+        "username": req.body.username,
+        "email": req.body.email,
+        "password": req.body.password
+      }
+    })
   
-  let newUser = await prisma.user.create({
-    data: {
-      "username": req.body.username,
-      "email": req.body.email,
-      "password": req.body.password
-    }
-  })
-
-  res.status(200).json({ "newUser": newUser });
+    res.status(200).json({ "newUser": newUser });
+  } catch (err){
+    res.send({ "error: ": err })
+  }
 }
 
 export const getUsers: RequestHandler = async (req, res, next) => {
-
-  res.status(200).json({ "test": "getUsers" });
+  try {
+    const users = await prisma.user.findMany(); 
+    res.status(200).json({ "users": users });
+  } catch (err){
+    res.send({ "error: ": err })
+  }
 }
 
 export const getUser: RequestHandler = async (req, res, next) => {
+  try {
+    let newUser = await prisma.user.findUnique({
+      where: {
+        "id": req.body.userId
+      }
+    })
+  
+    res.status(200).json({ "newUser": newUser });
+  } catch (err){
+    res.send({ "error: ": err })
+  }
+}
 
-  res.status(200).json({ "test": "getUser" });
+// update 
+export const updateUser: RequestHandler = async (req, res, next) => {
+  
+  let fieldsToUpdate = req.body
+
+  try {
+    let updatedUser = await prisma.user.update({
+      where: {
+        id: req.params.userId,
+      },
+      data: fieldsToUpdate,
+    })
+  
+    res.status(200).json({ "updatedUser": updatedUser });
+  } catch (err){
+    res.send({ "error: ": err })
+  }
+}
+
+// delete 
+export const deleteUser: RequestHandler = async (req, res, next) => {
+  
+  try {
+    let deletedUser = await prisma.user.delete({
+      where: {
+        id: req.params.userId,
+      }
+    })
+  
+    res.status(200).json({ "deletedUser": deletedUser });
+  } catch (err){
+    res.send({ "error: ": err })
+  }
 }
