@@ -1,6 +1,7 @@
 import express from "express"; 
 import prisma from "./prisma";
 import userRoutes from "./routes/users";
+import cartRoutes from "./routes/carts"; 
 import bodyParser from "body-parser";
 
 
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 
 // routes 
 app.use('/api/users', userRoutes)
+app.use('/api/carts', cartRoutes)
 
 
 app.listen(3500, () => {

@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express'; 
 import prisma from "../prisma";
-import dotenv  from "dotenv"
+import dotenv  from "dotenv";
 
 
 export const createUser:RequestHandler = async (req, res, next) => {
@@ -43,7 +43,6 @@ export const getUser: RequestHandler = async (req, res, next) => {
   }
 }
 
-// update 
 export const updateUser: RequestHandler = async (req, res, next) => {
   
   let fieldsToUpdate = req.body
@@ -62,7 +61,6 @@ export const updateUser: RequestHandler = async (req, res, next) => {
   }
 }
 
-// delete 
 export const deleteUser: RequestHandler = async (req, res, next) => {
   
   try {
